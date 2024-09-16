@@ -8,9 +8,8 @@ export const useFetchPosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(
-          "https://c855c434-d92b-44ba-b00c-10d45fc9c4c1.mock.pstmn.io/posts"
-        );
+        const response = await fetch("http://localhost:3000/posts");
+
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }
