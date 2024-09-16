@@ -50,7 +50,7 @@ function RootLayoutNav() {
             headerLeft: () => (
               <Image
                 source={require("../assets/images/care-circle-logo-with-text.png")}
-                style={{ width: 135, height: 40, marginLeft: 10 }}
+                style={{ width: 150, height: 40, marginLeft: 10 }}
               />
             ),
             headerStyle: {
