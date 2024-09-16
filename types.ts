@@ -7,6 +7,7 @@ interface Comment {
 }
 
 interface Post {
+  id: number;
   post_url: string;
   title: string;
   created_at: string;
