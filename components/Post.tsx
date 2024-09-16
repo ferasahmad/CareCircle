@@ -1,16 +1,27 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import PostAction from "./PostAction";
 import formatDate from "@/utilities/formatDate";
+import { useHugPost } from "@/hooks/useHugPost";
 
 interface PostProps {
   post: Post;
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  const handleHugPress = () => {
-    console.log("hug");
+  const [numHugs, setNumHugs] = useState(post.num_hugs);
+  const { toggleHugPost, error } = useHugPost();
+  const [hasHugged, setHasHugged] = useState(false);
+
+  const handleHugPress = async () => {
+    const updatedPost = await toggleHugPost(post.id, numHugs);
+    if (!updatedPost) {
+      Alert.alert("Error", error || "Failed to send hug.");
+    } else {
+      setNumHugs(updatedPost.num_hugs);
+      setHasHugged(!hasHugged);
+    }
   };
 
   const handleCommentPress = () => {
@@ -32,8 +43,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
       <View style={styles.actionsContainer}>
         <View style={styles.actionsContainer}>
           <PostAction
-            imageSrc={require("../assets/images/heart.png")}
-            label={`${post.num_hugs} Hugs`}
+            imageSrc={
+              hasHugged
+                ? require("../assets/images/heart-filled.png")
+                : require("../assets/images/heart.png")
+            }
+            label={numHugs}
             onPress={handleHugPress}
           />
           <PostAction
