@@ -8,18 +8,16 @@ interface GenericWrapperProps {
 
 export default function GenericWrapper({ children }: GenericWrapperProps) {
   return (
-    <LinearGradient
-      colors={["#F6FFDA", "#FEFAE1"]}
-      style={styles.gradientBackground}
-    >
+    <View style={styles.gradientBackground}>
       <View style={styles.contentWrapper}>{children}</View>
-    </LinearGradient>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   gradientBackground: {
     flex: 1,
+    backgroundColor: "white",
   },
   contentWrapper: {
     flex: 1,
