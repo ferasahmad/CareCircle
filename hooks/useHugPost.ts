@@ -7,11 +7,11 @@ export const useHugPost = () => {
     [postId: number]: boolean;
   }>({});
 
-  const toggleHugPost = async (postId: number, currentNumHugs: number) => {
+  const toggleHugPost = async (postId: string, currentNumHugs: number) => {
     setIsLoading(true);
     setError(null);
 
-    const hasHugged = userHasHugged[postId] ?? false;
+    const hasHugged = userHasHugged[parseInt(postId)] ?? false;
 
     try {
       const response = await fetch(`http://localhost:3000/posts/${postId}`, {
