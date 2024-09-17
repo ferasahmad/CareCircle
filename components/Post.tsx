@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import PostAction from "./PostAction";
 import formatDate from "@/utilities/formatDate";
 import { useHugPost } from "@/hooks/useHugPost";
+import { router } from "expo-router";
 
 interface PostProps {
   post: Post;
@@ -29,14 +30,24 @@ const Post: React.FC<PostProps> = ({ post }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        router.push({
+          pathname: "/post-details",
+          params: {
+            postId: post.id.toString(),
+          },
+        })
+      }
+    >
       <Text style={styles.title}>{post.title}</Text>
       <View style={styles.textContainer}>
         <Text style={styles.description} numberOfLines={4}>
           {post.patient_description}
         </Text>
         <LinearGradient
-          colors={["transparent", "#fff"]}
+          colors={["transparent", "#FFE4E4"]}
           style={styles.gradient}
         />
       </View>
@@ -67,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     borderRadius: 15,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFE4E4",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

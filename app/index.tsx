@@ -1,12 +1,11 @@
 import GenericWrapper from "@/components/GenericWrapper";
-import { useFetchPosts } from "@/hooks/useFetchPosts";
 import React from "react";
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, Text } from "react-native";
 import Post from "@/components/Post";
-import { Text } from "react-native";
+import { usePosts } from "@/context/PostsContext";
 
 export default function Index() {
-  const { posts, loading, error } = useFetchPosts();
+  const { posts, loading, error } = usePosts();
 
   if (loading) {
     return (
@@ -29,8 +28,8 @@ export default function Index() {
       <FlatList
         data={posts}
         contentContainerStyle={styles.flatlistContainer}
-        keyExtractor={(item: Post) => item.post_url}
-        renderItem={({ item }: { item: Post }) => <Post post={item} />}
+        keyExtractor={(item) => item.post_url}
+        renderItem={({ item }) => <Post post={item} />}
       />
     </GenericWrapper>
   );
@@ -38,8 +37,7 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   flatlistContainer: {
-    gap: 10,
-    paddingHorizontal: 10,
-    paddingBottom: 10,
+    gap: 15,
+    padding: 15,
   },
 });
