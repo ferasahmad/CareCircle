@@ -6,7 +6,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
+import { PostsProvider } from "@/context/PostsContext";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -36,29 +36,32 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <PostsProvider>
+      <RootLayoutNav />
+    </PostsProvider>
+  );
 }
+
+const headerOptions = {
+  title: "",
+  headerLeft: () => (
+    <Image
+      source={require("../assets/images/care-circle-logo-with-text.png")}
+      style={{ width: 150, height: 40, marginLeft: 10 }}
+    />
+  ),
+  headerStyle: {
+    backgroundColor: "#FEFAE1",
+  },
+};
 
 function RootLayoutNav() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "",
-            headerLeft: () => (
-              <Image
-                source={require("../assets/images/care-circle-logo-with-text.png")}
-                style={{ width: 150, height: 40, marginLeft: 10 }}
-              />
-            ),
-            headerStyle: {
-              backgroundColor: "#F6FFDA",
-            },
-            headerShadowVisible: false,
-          }}
-        />
+        <Stack.Screen name="index" options={headerOptions} />
+        <Stack.Screen name="post-details" options={headerOptions} />
       </Stack>
     </ThemeProvider>
   );
