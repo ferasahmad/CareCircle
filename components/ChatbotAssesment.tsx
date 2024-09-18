@@ -23,6 +23,11 @@ const ChatbotAssessment: React.FC<ChatbotAssessmentProps> = ({
       </View>
       <Markdown
         style={{
+          heading3: {
+            fontWeight: 500,
+            marginVertical: 10,
+            color: "black",
+          },
           body: {
             fontSize: 14,
             color: "#555",

@@ -53,7 +53,7 @@ export default function PostDetails() {
         <View style={styles.cardContainer}>
           <Text style={styles.title}>{post.title}</Text>
           <Text style={styles.description}>{post.patient_description}</Text>
-          <View>
+          <View style={styles.actionsAndDate}>
             <View style={styles.actionsContainer}>
               <PostAction
                 imageSrc={
@@ -66,7 +66,7 @@ export default function PostDetails() {
               />
               <PostAction
                 imageSrc={require("../assets/images/comment.png")}
-                label="Comment"
+                label={Object.keys(post.comments).length}
                 onPress={() => {}}
               />
             </View>
@@ -97,6 +97,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  actionsAndDate: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   title: {
     fontSize: 20,
