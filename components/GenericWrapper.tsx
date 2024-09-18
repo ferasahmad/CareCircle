@@ -7,7 +7,10 @@ interface GenericWrapperProps {
 
 export default function GenericWrapper({ children }: GenericWrapperProps) {
   return (
-    <ScrollView contentContainerStyle={styles.scrollContent}>
+    <ScrollView
+      style={{ backgroundColor: "#FEFAE1" }}
+      contentContainerStyle={styles.scrollContent}
+    >
       <View style={styles.contentContainer}>{children}</View>
     </ScrollView>
   );
@@ -21,6 +24,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     width: "100%",
+    backgroundColor: "#FEFAE1",
     maxWidth: 700,
   },
 });
