@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import formatDate from "@/utilities/formatDate";
 
@@ -35,7 +35,7 @@ const Comment: React.FC<CommentProps> = ({
               ? `View ${Object.keys(comment.replies).length} Replies`
               : `Hide Replies`}
           </Text>
-          <View style={styles.line} />
+          <View style={{ ...styles.line, flexGrow: 1 }} />
         </TouchableOpacity>
       )}
       {!isCollapsed && renderReplies()}
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   replyToggle: {
-    color: "black",
+    color: "#555",
     alignSelf: "flex-start",
     borderRadius: 5,
     fontSize: 14,
@@ -81,7 +81,12 @@ const styles = StyleSheet.create({
   line: {
     height: 2,
     width: 40,
-    backgroundColor: "gray",
+    backgroundColor: "transparent",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });
 
