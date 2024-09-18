@@ -1,4 +1,4 @@
-# 💌 CareCircle
+# 💌 CareCircle (MDandME Take Home)
 An Expo React Native application that allows users to view and interact with health related posts.
 
 ## Prerequisites
