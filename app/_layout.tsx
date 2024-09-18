@@ -45,10 +45,11 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const homeHeaderOptions = {
     title: "",
+    headerShadowVisible: false,
     headerLeft: () => (
       <Image
         source={require("../assets/images/care-circle-logo-with-text.png")}
-        style={{ width: 150, height: 40, marginLeft: 10 }}
+        style={{ width: 140, height: 30 }}
       />
     ),
     headerStyle: {
@@ -59,10 +60,12 @@ function RootLayoutNav() {
 
   const postDetailsOptions = {
     title: "",
+    headerShadowVisible: false,
     headerStyle: {
       backgroundColor: "#FEFAE1",
       borderBottomWidth: 0,
     },
+    headerTintColor: "#F08080",
   };
 
   return (
