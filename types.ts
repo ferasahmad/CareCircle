@@ -4,6 +4,7 @@ interface Comment {
   display_name: string;
   text: string;
   created_at: string;
+  replies: Record<number, Comment>;
 }
 
 interface Post {
