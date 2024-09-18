@@ -5,9 +5,9 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 import GenericWrapper from "@/components/GenericWrapper";
 import Markdown from "react-native-markdown-display";
@@ -15,12 +15,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import formatDate from "@/utilities/formatDate";
 import PostAction from "@/components/PostAction";
 import { useHugPost } from "@/hooks/useHugPost";
+import CommentsList from "@/components/CommentList";
 
 export default function PostDetails() {
   const { postId } = useLocalSearchParams<{ postId: string }>();
   const { posts, loading, error } = usePosts();
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [expandedComments, setExpandedComments] = useState<
+    Record<number, boolean>
+  >({});
 
   const post = posts.find((p) => p.id === postId);
   const [numHugs, setNumHugs] = useState(post ? post.num_hugs : 0);
@@ -40,8 +44,11 @@ export default function PostDetails() {
     }
   };
 
-  const handleCommentPress = () => {
-    console.log("comment");
+  const toggleCollapse = (commentId: number) => {
+    setExpandedComments((prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId],
+    }));
   };
 
   return (
@@ -51,22 +58,20 @@ export default function PostDetails() {
           <Text style={styles.title}>{post.title}</Text>
           <Text style={styles.description}>{post.patient_description}</Text>
           <View style={styles.actionsContainer}>
-            <View style={styles.actionsContainer}>
-              <PostAction
-                imageSrc={
-                  hasHugged
-                    ? require("../assets/images/heart-filled.png")
-                    : require("../assets/images/heart.png")
-                }
-                label={numHugs}
-                onPress={handleHugPress}
-              />
-              <PostAction
-                imageSrc={require("../assets/images/comment.png")}
-                label="Comment"
-                onPress={handleCommentPress}
-              />
-            </View>
+            <PostAction
+              imageSrc={
+                hasHugged
+                  ? require("../assets/images/heart-filled.png")
+                  : require("../assets/images/heart.png")
+              }
+              label={numHugs}
+              onPress={handleHugPress}
+            />
+            <PostAction
+              imageSrc={require("../assets/images/comment.png")}
+              label="Comment"
+              onPress={() => {}}
+            />
             <Text style={styles.date}>{formatDate(post.created_at)}</Text>
           </View>
         </View>
@@ -92,17 +97,11 @@ export default function PostDetails() {
         </View>
         <View style={[styles.commentsContainer, styles.cardContainer]}>
           <Text style={styles.title}>Comments</Text>
-          {Object.values(post.comments).map((comment) => (
-            <View key={comment.id} style={styles.commentContainer}>
-              <View style={styles.commentNameAndDate}>
-                <Text style={styles.commentAuthor}>{comment.display_name}</Text>
-                <Text style={styles.date}>
-                  {formatDate(comment.created_at)}
-                </Text>
-              </View>
-              <Text style={styles.commentText}>{comment.text}</Text>
-            </View>
-          ))}
+          <CommentsList
+            comments={post.comments}
+            expandedComments={expandedComments}
+            toggleCollapse={toggleCollapse}
+          />
         </View>
       </ScrollView>
     </GenericWrapper>
@@ -148,10 +147,6 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#E6F4FC",
   },
-  markdown: {
-    fontSize: 14,
-    color: "#555",
-  },
   expandButton: {
     position: "absolute",
     bottom: 0,
@@ -178,21 +173,5 @@ const styles = StyleSheet.create({
     gap: 15,
     paddingVertical: 10,
     backgroundColor: "#EAE6FC",
-  },
-  commentNameAndDate: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-  },
-  commentContainer: {
-    borderRadius: 5,
-  },
-  commentAuthor: {
-    fontWeight: "bold",
-    fontSize: 14,
-  },
-  commentText: {
-    fontSize: 14,
-    color: "#333",
   },
 });
