@@ -1,7 +1,6 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Image, Text } from "react-native";
+import { Image } from "react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -43,27 +42,33 @@ export default function RootLayout() {
   );
 }
 
-const headerOptions = {
-  title: "",
-  headerLeft: () => (
-    <Image
-      source={require("../assets/images/care-circle-logo-with-text.png")}
-      style={{ width: 150, height: 40, marginLeft: 10 }}
-    />
-  ),
-  headerStyle: {
-    backgroundColor: "#FEFAE1",
-    borderBottomWidth: 0,
-  },
-};
-
 function RootLayoutNav() {
+  const homeHeaderOptions = {
+    title: "",
+    headerLeft: () => (
+      <Image
+        source={require("../assets/images/care-circle-logo-with-text.png")}
+        style={{ width: 150, height: 40, marginLeft: 10 }}
+      />
+    ),
+    headerStyle: {
+      backgroundColor: "#FEFAE1",
+      borderBottomWidth: 0,
+    },
+  };
+
+  const postDetailsOptions = {
+    title: "",
+    headerStyle: {
+      backgroundColor: "#FEFAE1",
+      borderBottomWidth: 0,
+    },
+  };
+
   return (
-    <ThemeProvider value={DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={headerOptions} />
-        <Stack.Screen name="post-details" options={headerOptions} />
-      </Stack>
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="index" options={homeHeaderOptions} />
+      <Stack.Screen name="post-details" options={postDetailsOptions} />
+    </Stack>
   );
 }
