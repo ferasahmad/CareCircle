@@ -1,19 +1,26 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 
 interface GenericWrapperProps {
   children: React.ReactNode;
 }
 
 export default function GenericWrapper({ children }: GenericWrapperProps) {
-  return <View style={styles.container}>{children}</View>;
+  return (
+    <ScrollView contentContainerStyle={styles.scrollContent}>
+      <View style={styles.contentContainer}>{children}</View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fefae0",
-    justifyContent: "center",
+  scrollContent: {
+    flexGrow: 1,
     alignItems: "center",
+    backgroundColor: "#FEFAE1",
+  },
+  contentContainer: {
+    width: "100%",
+    maxWidth: 700,
   },
 });
