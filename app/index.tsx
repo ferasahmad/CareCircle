@@ -10,7 +10,7 @@ export default function Index() {
   if (loading) {
     return (
       <GenericWrapper>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#CCD5AE" />
       </GenericWrapper>
     );
   }
@@ -38,6 +38,5 @@ export default function Index() {
 const styles = StyleSheet.create({
   flatlistContainer: {
     gap: 15,
-    padding: 15,
   },
 });

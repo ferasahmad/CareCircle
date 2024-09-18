@@ -47,7 +47,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           {post.patient_description}
         </Text>
         <LinearGradient
-          colors={["transparent", "#FFE4E4"]}
+          colors={["transparent", "#FEFAE1"]}
           style={styles.gradient}
         />
       </View>
@@ -64,7 +64,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           />
           <PostAction
             imageSrc={require("../assets/images/comment.png")}
-            label="Comment"
+            label={Object.keys(post.comments).length}
             onPress={handleCommentPress}
           />
         </View>
@@ -77,8 +77,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    borderRadius: 15,
-    backgroundColor: "#FFE4E4",
+    // backgroundColor: "#FAEDCD",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

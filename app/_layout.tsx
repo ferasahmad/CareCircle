@@ -53,6 +53,7 @@ const headerOptions = {
   ),
   headerStyle: {
     backgroundColor: "#FEFAE1",
+    borderBottomWidth: 0,
   },
 };
 
