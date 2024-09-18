@@ -41,7 +41,11 @@ const ChatbotAssessment: React.FC<ChatbotAssessmentProps> = ({
       </Markdown>
       {!isExpanded && (
         <LinearGradient
-          colors={["transparent", "rgba(254,250,225,0.8)", "#FEFAE1"]}
+          colors={[
+            "rgba(254,250,224,0)",
+            "rgba(254,250,225,0.8)",
+            "rgba(254,250,224,1)",
+          ]}
           style={styles.gradient}
         >
           <TouchableOpacity onPress={() => setIsExpanded(true)}>

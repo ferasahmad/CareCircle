@@ -47,7 +47,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           {post.patient_description}
         </Text>
         <LinearGradient
-          colors={["transparent", "#FEFAE1"]}
+          colors={["rgba(254,250,224,0)", "rgba(254,250,224,1)"]}
           style={styles.gradient}
         />
       </View>
@@ -77,11 +77,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    backgroundColor: "#FEFAE0",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    elevation: 2,
   },
   title: {
     fontWeight: "bold",
