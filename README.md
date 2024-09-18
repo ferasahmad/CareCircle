@@ -32,7 +32,7 @@ Before running this project, ensure you have the following installed:
 
 ## Demo
 
-LOOM VIDEO
+https://www.loom.com/share/caa7975c98e549de86bca1ca7fca069e
 
 ## Screenshots
 
