@@ -1,6 +1,6 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
-import { Image } from "react-native";
+import { Image, Platform } from "react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -49,7 +49,11 @@ function RootLayoutNav() {
     headerLeft: () => (
       <Image
         source={require("../assets/images/care-circle-logo-with-text.png")}
-        style={{ width: 140, height: 30 }}
+        style={{
+          width: 140,
+          height: 30,
+          marginLeft: Platform.OS == "ios" ? 0 : 15,
+        }}
       />
     ),
     headerStyle: {
