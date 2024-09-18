@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { useFetchPosts } from "@/hooks/useFetchPosts"; // Import your hook
+import { useFetchPosts } from "@/hooks/useFetchPosts";
 
 interface PostsContextProps {
   posts: Post[];
