@@ -28,7 +28,7 @@ Before running this project, ensure you have the following installed:
 ### Running the Node.js Mock Server
 
 * **Install JSON Server package** `npm install -g json-server`
-* **Start the server** `json-server --watch db.json --port 3000`
+* **Start the server** `json-server --watch constants/data.json --port 3000`
 
 ## Demo
 
