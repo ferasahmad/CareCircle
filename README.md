@@ -34,6 +34,10 @@ Before running this project, ensure you have the following installed:
 
 https://www.loom.com/share/caa7975c98e549de86bca1ca7fca069e
 
+## Figma Mocks
+
+https://www.figma.com/design/dsuZTdIG4wpAF4ArqFx1RS/CareCircle---Take-Home-Assignment-(MDandME)?node-id=0-1&t=37LmOWK3qv2YLqpC-1
+
 ## Screenshots
 
 <img width="300" alt="Screenshot 2024-09-18 at 6 17 52 PM" src="https://github.com/user-attachments/assets/e5a7803e-df2d-431d-ade8-f67a726c3a88">
